@@ -8,7 +8,9 @@ The `ice40up5k_bb.py` file contains a description of Lattice's `iCE40UP5K-SG48` 
 
 https://www.digikey.com/short/z8ddhq
 
-I picked the `iCE40UP5K-SG48` because you can design 2-layer boards for it and the QFN package can be soldered by hand. As a result, there are plenty of affordable boards which use it, like [Gnarly Grey's](http://www.gnarlygrey.com/) "Upduino".
+And the `upduino.py` file contains a description of Gnarly Grey's more affordable 'Upduino' board which uses the same `iCE40UP5K-SG48` chip:
+
+http://www.gnarlygrey.com/
 
 There's not much to see here; I just wanted to learn how to build an nMigen design and program an FPGA with it.
 
@@ -25,3 +27,8 @@ https://github.com/YosysHQ/yosys
 https://github.com/cliffordwolf/icestorm
 
 https://github.com/YosysHQ/nextpnr
+
+Once everything is installed, you should be able to build and flash the program by running the `blink.py` file with the type of board you are using:
+
+    python3 blink.py up5k_bb
+    python3 blink.py upduino

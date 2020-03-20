@@ -1,6 +1,9 @@
 from nmigen import *
 from nmigen.back.pysim import *
 from ice40up5k_bb import *
+from upduino import *
+
+import sys
 
 # LED blinker to test that nMigen runs on an FPGA board.
 class Blinker( Elaboratable ):
@@ -32,4 +35,18 @@ class Blinker( Elaboratable ):
     return m
 
 if __name__ == "__main__":
-  UP5KBBPlatform().build( Blinker(), do_program = True )
+  if len( sys.argv ) != 2:
+    print( 'Usage: python3 blink.py <board>\r\n'
+           'Accepted boards:\r\n'
+           '  "up5k_bb" (Lattice iCE40UP5K-SG48 breakout board)\r\n'
+           '  "upduino" (Gnarly Grey Upduino board)' )
+  elif sys.argv[ 1 ].lower() == 'up5k_bb':
+    UP5KBBPlatform().build( Blinker(), do_program = True )
+  elif sys.argv[ 1 ].lower() == 'upduino':
+    UpduinoPlatform().build( Blinker(), do_program = True )
+  else:
+    print( 'Unrecognized board: %s\r\n'
+           'Accepted boards:\r\n'
+           '  "up5k_bb" (Lattice iCE40UP5K-SG48 breakout board)\r\n'
+           '  "upduino" (Gnarly Grey Upduino board)'
+           %( sys.argv[ 1 ] ) )
